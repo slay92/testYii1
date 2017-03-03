@@ -223,26 +223,32 @@ Apply one or more of the following classes to get the desired effect
         <li class="active"><a href="/screen/web/index.php/site/index"><i class="fa fa-home"></i> <span>Home</span></a></li>
         <!--<li><a href="/screen/web/index.php/site/page/about"><i class="fa fa-info-circle"></i> <span>About</span></a></li>-->
         <li><a href="/screen/web/index.php/site/contact"><i class="fa fa-mail-forward"></i> <span>Contact</span></a></li>
-        <?php 
-            if(Yii::app()->user->isGuest){
-               echo '<li><a href="/screen/web/index.php/site/login"><i class="fa fa-sign-in"></i> <span>Login</span></a></li>'; 
-            }else{
-               echo '<li><a href="/screen/web/index.php/site/logout"><i class="fa fa-sign-out"></i> <span>Log Out</span></a></li>'; 
-            }
+        <?php        
+        $adminMenu = "";
+        if(Yii::app()->user->id == 1){
+            $adminMenu .= <<<HTML
+            <li class="treeview">
+                <a href="#"><i class="fa fa-gears"></i> <span>Admin Section</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="/screen/web/index.php/user/">Users</a></li>
+                </ul>
+            </li>
+HTML;
+        }
+        echo $adminMenu;
+        
+        if(Yii::app()->user->isGuest){
+            echo '<li><a href="/screen/web/index.php/site/login"><i class="fa fa-sign-in"></i> <span>Login</span></a></li>'; 
+        }
+        else{
+            echo '<li><a href="/screen/web/index.php/site/logout"><i class="fa fa-sign-out"></i> <span>Log Out</span></a></li>'; 
+        }
+        
         ?>
-<!--        
-        <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
-            <li><a href="#">Link in level 2</a></li>
-          </ul>
-        </li>
--->
       </ul>
       <!-- /.sidebar-menu -->
     </section>
