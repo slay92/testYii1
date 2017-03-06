@@ -51,7 +51,7 @@ class UserIdentity extends CUserIdentity
         }
         
         public function getName() {
-		return $this->_userSurname . ", " . $this->_userName;
+            return $this->_userSurname . ", " . $this->_userName;
 	}
         
         public function getId() {

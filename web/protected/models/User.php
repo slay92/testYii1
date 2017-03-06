@@ -21,6 +21,16 @@
  */
 class User extends CActiveRecord
 {
+        /**
+        * Returns the static model of the specified AR class.
+        * @return CActiveRecord the static model class
+        */
+        public static function model($className=__CLASS__)
+        {
+                return parent::model($className);
+        }
+    
+    
 	/**
 	 * @return string the associated database table name
 	 */
@@ -119,9 +129,9 @@ class User extends CActiveRecord
 	 * @param string $className active record class name.
 	 * @return User the static model class
 	 */
-	public static function model($className=__CLASS__){
-		return parent::model($className);
-	}
+//	public static function model($className=__CLASS__){
+//		return parent::model($className);
+//	}
         
         // hash password
         public function hashPassword($password, $salt){

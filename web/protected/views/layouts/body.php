@@ -178,7 +178,7 @@ Apply one or more of the following classes to get the desired effect
               </li>
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat"><i class="fa fa-user"></i>Profile</a>
+                  <a href="/screen/web/index.php/user/profile" class="btn btn-default btn-flat"><i class="fa fa-user"></i>Profile</a>
                 </div>
                 <div class="pull-right">
                   <a href="/screen/web/index.php/site/logout" class="btn btn-default btn-flat"><i class="fa fa-sign-out"></i>Sign out</a>
@@ -224,22 +224,18 @@ Apply one or more of the following classes to get the desired effect
         <!--<li><a href="/screen/web/index.php/site/page/about"><i class="fa fa-info-circle"></i> <span>About</span></a></li>-->
         <li><a href="/screen/web/index.php/site/contact"><i class="fa fa-mail-forward"></i> <span>Contact</span></a></li>
         <?php        
-        $adminMenu = "";
-        if(Yii::app()->user->id == 1){
-            $adminMenu .= <<<HTML
-            <li class="treeview">
-                <a href="#"><i class="fa fa-gears"></i> <span>Admin Section</span>
-                    <span class="pull-right-container">
-                      <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="/screen/web/index.php/user/">Users</a></li>
-                </ul>
-            </li>
-HTML;
+        if(Yii::app()->user->isAdmin() == 1){
+            echo '<li class="treeview">';
+                echo '<a href="#"><i class="fa fa-gears"></i> <span>Admin Section</span>';
+                    echo '<span class="pull-right-container">';
+                      echo '<i class="fa fa-angle-left pull-right"></i>';
+                    echo '</span>';
+                echo '</a>';
+                echo '<ul class="treeview-menu">';
+                    echo '<li><a href="/screen/web/index.php/user/">Users</a></li>';
+                echo '</ul>';
+            echo '</li>';
         }
-        echo $adminMenu;
         
         if(Yii::app()->user->isGuest){
             echo '<li><a href="/screen/web/index.php/site/login"><i class="fa fa-sign-in"></i> <span>Login</span></a></li>'; 
@@ -274,7 +270,9 @@ HTML;
     <!-- Main content -->
     <section class="content">
 
-     <?php echo $content; ?>
+    <?php
+        echo $content;
+    ?>
 
     </section>
     <!-- /.content -->

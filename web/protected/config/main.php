@@ -34,7 +34,11 @@ return array(
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
+                        'class' => 'WebUser',
 		),
+//                'user'=>array(
+//                        'class' => 'WebUser',
+//                ),
 
 		'urlManager'=>array(
 			'urlFormat'=>'path',
@@ -53,19 +57,19 @@ return array(
 			'errorAction'=>YII_DEBUG ? null : 'site/error',
 		),
 
-		'log'=>array(
-			'class'=>'CLogRouter',
-			'routes'=>array(
-				array(
-					'class'=>'CFileLogRoute',
-					'levels'=>'error, warning',
-				),
-				// uncomment the following to show log messages on web pages
-				array(
-					'class'=>'CWebLogRoute',
-				),
-			),
-		),
+//		'log'=>array(
+//			'class'=>'CLogRouter',
+//			'routes'=>array(
+//				array(
+//					'class'=>'CFileLogRoute',
+//					'levels'=>'error, warning',
+//				),
+//				// uncomment the following to show log messages on web pages
+//				array(
+//					'class'=>'CWebLogRoute',
+//				),
+//			),
+//		),
 
 	),
 
