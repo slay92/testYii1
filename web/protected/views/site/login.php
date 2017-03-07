@@ -9,7 +9,7 @@ $this->breadcrumbs=array(
 );
 ?>
 
-<p class="login-box-msg">Sign in to start your session</p>
+<p class="login-box-msg"><?php echo LoginForm::label()['title']; ?></p>
 
 <?php
     $form=$this->beginWidget('CActiveForm', array(
@@ -21,25 +21,34 @@ $this->breadcrumbs=array(
     ));
 ?>
     <div class="form-group has-feedback">
-        <?php echo $form->textField($model, 'username', array('class'=>'form-control')); ?>
+        <?php echo $form->textField($model, 'username', array('class'=>'form-control', 'placeholder'=>LoginForm::label()['email'])); ?>
         <?php echo $form->error($model,'username'); ?>
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
     </div>
     <div class="form-group has-feedback">
-        <?php echo $form->passwordField($model, 'password', array('class'=>'form-control')); ?>
+        <?php echo $form->passwordField($model, 'password', array('class'=>'form-control', 'placeholder'=>LoginForm::label()['password'])); ?>
         <?php echo $form->error($model,'password'); ?>
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
     </div>
     <div class="row">
-        <div class="col-xs-8">
+        <div class="col-xs-7">
         <div class="checkbox icheck">
             <label>
-                <?php echo $form->checkBox($model,'rememberMe'); ?> Remember Me
+                <?php echo $form->checkBox($model,'rememberMe');?> <?php echo LoginForm::label()['remember']; ?>
             </label>
         </div>
         </div>
-        <div class="col-xs-4">
-            <?php echo CHtml::submitButton('Login', array('class'=>'btn btn-primary btn-block btn-flat')); ?>
+        <div class="col-xs-5">
+            <?php
+                echo CHtml::submitButton(
+                    LoginForm::label()['login'],
+                    array('class'=>'btn btn-primary btn-block btn-flat')
+                );
+            ?>
         </div>
     </div>
 <?php $this->endWidget(); ?>
+
+<?php
+    //setLanguage('es');
+?>

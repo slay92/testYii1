@@ -3,14 +3,21 @@ Yii Framework Testing
 
 I'm Testing Yii Framework 1.
 
-- Trying connections SQL and Gii
+- Connected to MySQL
+- Activate Gii
 - Added AdminLTE Template Bootstrap 3
 - Customized login with mySQL
-- More testings in progress...
+- Customized admin role with mySQL
+- Add multilanguages labels in controllers
+- More testings in progress ...
 
 
 REQUIREMENTS
 ------------
+
+- PHP > 5.1.0
+- MySQL
+- Apache2 or similar
 
 The minimum requirement by Yii is that your Web server supports
 PHP 5.1.0 or above. Yii has been tested with Apache HTTP server

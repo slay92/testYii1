@@ -72,6 +72,10 @@ return array(
 //		),
 
 	),
+    
+        //Multilingual Source
+        'sourceLanguage'=>'03',
+        'language'=>'ca',
 
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
