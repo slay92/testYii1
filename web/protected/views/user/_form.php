@@ -25,18 +25,6 @@
 	</div>
 
 	<div class="form-group">
-		<?php echo $form->labelEx($model,'user_info'); ?>
-		<?php echo $form->textField($model,'user_info',array('class'=>'form-control')); ?>
-		<?php echo $form->error($model,'user_info'); ?>
-	</div>
-
-	<div class="form-group">
-		<?php echo $form->labelEx($model,'user_perms'); ?>
-		<?php echo $form->textField($model,'user_perms',array('class'=>'form-control')); ?>
-		<?php echo $form->error($model,'user_perms'); ?>
-	</div>
-
-	<div class="form-group">
 		<?php echo $form->labelEx($model,'sup_user'); ?>
 		<?php echo $form->textField($model,'sup_user',array('class'=>'form-control')); ?>
 		<?php echo $form->error($model,'sup_user'); ?>

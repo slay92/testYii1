@@ -47,13 +47,12 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'columns'=>array(
 		'id',
 		'user_type',
-		'user_info',
-		'user_perms',
 		'sup_user',
 		'user_name',
-		/*
+		
 		'user_surname',
 		'user_email',
+                /*
 		'salt_password',
 		'user_password',
 		*/

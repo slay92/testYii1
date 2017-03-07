@@ -22,16 +22,6 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'user_info'); ?>
-		<?php echo $form->textField($model,'user_info'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'user_perms'); ?>
-		<?php echo $form->textField($model,'user_perms'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->label($model,'sup_user'); ?>
 		<?php echo $form->textField($model,'sup_user'); ?>
 	</div>

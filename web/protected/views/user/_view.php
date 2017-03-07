@@ -13,14 +13,6 @@
 	<?php echo CHtml::encode($data->user_type); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('user_info')); ?>:</b>
-	<?php echo CHtml::encode($data->user_info); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('user_perms')); ?>:</b>
-	<?php echo CHtml::encode($data->user_perms); ?>
-	<br />
-
 	<b><?php echo CHtml::encode($data->getAttributeLabel('sup_user')); ?>:</b>
 	<?php echo CHtml::encode($data->sup_user); ?>
 	<br />

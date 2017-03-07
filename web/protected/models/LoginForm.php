@@ -43,6 +43,7 @@ class LoginForm extends CFormModel
 			'login'=>Yii::t('app','model.login.login'),
 		);
 	}
+        
         public static function label(){
                 return (new LoginForm)->attributeLabels();
         }

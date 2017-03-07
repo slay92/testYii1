@@ -5,8 +5,6 @@
  * The followings are the available columns in table 't_user':
  * @property integer $id
  * @property integer $user_type
- * @property integer $user_info
- * @property integer $user_perms
  * @property integer $sup_user
  * @property string $user_name
  * @property string $user_surname
@@ -47,13 +45,13 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('user_type, user_info, user_perms, sup_user, user_name, user_surname, user_email, salt_password, user_password', 'required'),
-			array('user_type, user_info, user_perms, sup_user', 'numerical', 'integerOnly'=>true),
+			array('user_type, sup_user, user_name, user_surname, user_email, salt_password, user_password', 'required'),
+			array('user_type, sup_user', 'numerical', 'integerOnly'=>true),
 			array('user_name, user_surname, salt_password, user_password', 'length', 'max'=>150),
 			array('user_email', 'length', 'max'=>200),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, user_type, user_info, user_perms, sup_user, user_name, user_surname, user_email, salt_password, user_password', 'safe', 'on'=>'search'),
+			array('id, user_type, sup_user, user_name, user_surname, user_email, salt_password, user_password', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -79,16 +77,18 @@ class User extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'user_type' => 'User Type',
-			'user_info' => 'User Info',
-			'user_perms' => 'User Perms',
 			'sup_user' => 'Sup User',
-			'user_name' => 'User Name',
+			'user_name' => 'User Name',//Yii::t('app','model.header.headerProfile'),
 			'user_surname' => 'User Surname',
 			'user_email' => 'User Email',
 			'salt_password' => 'Salt Password',
 			'user_password' => 'User Password',
 		);
 	}
+        
+        public static function label(){
+               return (new BaseModel)->attributeLabels();
+        }
 
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
@@ -109,8 +109,6 @@ class User extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('user_type',$this->user_type);
-		$criteria->compare('user_info',$this->user_info);
-		$criteria->compare('user_perms',$this->user_perms);
 		$criteria->compare('sup_user',$this->sup_user);
 		$criteria->compare('user_name',$this->user_name,true);
 		$criteria->compare('user_surname',$this->user_surname,true);
