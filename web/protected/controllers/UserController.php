@@ -129,10 +129,18 @@ class UserController extends Controller
 	}
         
         public function actionProfile(){
+            if(!Yii::app()->user->isGuest){
+                $profile = User::model()->getProfileObject();
+                
                 $dataProvider=new CActiveDataProvider('User');
-		$this->render('profile',array(
-			'dataProvider'=>$dataProvider,
-		));
+                $this->render('profile',array(
+                        'dataProvider'=>$dataProvider,
+                        'profile'=>$profile,
+                ));
+            }
+            else{
+                $this->actionLogin();
+            }
         }
 
 	/**

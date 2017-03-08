@@ -63,7 +63,7 @@ class User extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'infousers' => array(self::HAS_MANY, 'Infouser', 'id_user'),
+			'infousers' => array(self::HAS_ONE, 'Infouser', 'id_user'),
 			'permsusers' => array(self::HAS_MANY, 'Permsuser', 'id_user'),
 			'userType' => array(self::BELONGS_TO, 'Typeuser', 'user_type'),
 		);
@@ -78,16 +78,29 @@ class User extends CActiveRecord
 			'id' => 'ID',
 			'user_type' => 'User Type',
 			'sup_user' => 'Sup User',
-			'user_name' => 'User Name',//Yii::t('app','model.header.headerProfile'),
-			'user_surname' => 'User Surname',
-			'user_email' => 'User Email',
+			'user_name' => Yii::t('app','model.profile.name'),
+			'user_surname' => Yii::t('app','model.profile.surname'),
+			'user_email' => Yii::t('app','model.profile.email'),
 			'salt_password' => 'Salt Password',
-			'user_password' => 'User Password',
+			'user_password' => Yii::t('app','model.profile.password'),
+                    
+                        'title' => Yii::t('app','model.profile.title'),
+                        'titleUpdate' => Yii::t('app','model.profile.titleUpdate'),
+                        'titleInfoBasic' => Yii::t('app','model.profile.titleInfoBasic'),
+                        'name' => Yii::t('app','model.profile.name'),
+                        'surname' => Yii::t('app','model.profile.surname'),
+                        'email' => Yii::t('app','model.profile.email'),
+                        'titleExtraInfo' => Yii::t('app','model.profile.titleExtraInfo'),
+                        'birthdate' => Yii::t('app','model.profile.birthdate'),
+                        'location' => Yii::t('app','model.profile.location'),
+                        'state' => Yii::t('app','model.profile.state'),
+                        'city' => Yii::t('app','model.profile.city'),
+                        'map' => Yii::t('app','model.profile.map'),
 		);
 	}
         
         public static function label(){
-               return (new BaseModel)->attributeLabels();
+               return (new User)->attributeLabels();
         }
 
 	/**
@@ -120,17 +133,26 @@ class User extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
-
-	/**
-	 * Returns the static model of the specified AR class.
-	 * Please note that you should have this exact method in all your CActiveRecord descendants!
-	 * @param string $className active record class name.
-	 * @return User the static model class
-	 */
-//	public static function model($className=__CLASS__){
-//		return parent::model($className);
-//	}
         
+        public function getProfileObject(){
+                $criteria=new CDbCriteria;
+                $id_user = Yii::app()->user->id;
+//                $id_user = 4;
+                
+                //Obtenir Utils::LOG
+//                echo "<div style='margin: 100px 300px;'>id usuari: ".$id_user."</div>";
+//                $criteria->select = array(
+//                    't.id, t.user_name, t.user_surname, t.user_email'
+//                    't.id, t.user_name, t.user_surname, t.user_email, t_typeuser.name, t_infouser.State, t_infouser.City'
+//                );
+                
+                $criteria->with = array('infousers', 'userType');
+                $criteria->addCondition('t.id = :id_user');
+                $criteria->params = array(':id_user' => $id_user);
+                $profile = $this->find($criteria);
+                return $profile;
+        }
+
         // hash password
         public function hashPassword($password, $salt){
             return md5($salt.$password);

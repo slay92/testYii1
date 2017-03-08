@@ -37,9 +37,17 @@ return array (
         'model.menuL.logout' => 'TANCAR SESSIÓ',
     //Profile
         'model.profile.title' => 'El meu perfil',
+        'model.profile.titleUpdate' => 'Edició del perfil',
+        'model.profile.password' => 'Contrasenya',
+        'model.profile.titleInfoBasic' => 'Informació Basica',
         'model.profile.name' => 'Nom',
         'model.profile.surname' => 'Cognoms',
         'model.profile.email' => 'Correu electronic',
-        'model.profile.typeUser' => 'Tipus d\'usuari',
+        'model.profile.titleExtraInfo' => 'Informació Detallada',
+        'model.profile.birthdate' => 'Data de neixament',
+        'model.profile.location' => 'Ubicació',
+        'model.profile.state' => 'Pais',
+        'model.profile.city' => 'Ciutat',
+        'model.profile.map' => 'Mapa de l\'ubicació',
 
 );
