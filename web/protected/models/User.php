@@ -85,6 +85,7 @@ class User extends CActiveRecord
 			'user_password' => Yii::t('app','model.profile.password'),
                     
                         'title' => Yii::t('app','model.profile.title'),
+                        'titleSpace' => Yii::t('app','model.profile.titleSpace'),
                         'titleUpdate' => Yii::t('app','model.profile.titleUpdate'),
                         'titleInfoBasic' => Yii::t('app','model.profile.titleInfoBasic'),
                         'name' => Yii::t('app','model.profile.name'),
@@ -137,7 +138,6 @@ class User extends CActiveRecord
         public function getProfileObject(){
                 $criteria=new CDbCriteria;
                 $id_user = Yii::app()->user->id;
-//                $id_user = 4;
                 
                 //Obtenir Utils::LOG
 //                echo "<div style='margin: 100px 300px;'>id usuari: ".$id_user."</div>";

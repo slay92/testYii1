@@ -37,6 +37,7 @@ return array (
         'model.menuL.logout' => 'TANCAR SESSIÓ',
     //Profile
         'model.profile.title' => 'El meu perfil',
+        'model.profile.titleSpace' => 'Espai Utilitzat',
         'model.profile.titleUpdate' => 'Edició del perfil',
         'model.profile.password' => 'Contrasenya',
         'model.profile.titleInfoBasic' => 'Informació Basica',

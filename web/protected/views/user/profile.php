@@ -23,7 +23,22 @@
         <!-- /.box-body -->
       </div>
       <!-- /.box -->
-
+      
+      <!-- About Me Box -->
+        <div class="box box-primary">
+          <div class="box-header with-border">
+            <h3 class="box-title"><?php echo User::label()['titleSpace']; ?></h3>
+          </div>
+          <!-- /.box-header -->
+          <div class="box-body">
+            <div class="box-body chart-responsive">
+                <div class="chart" id="sales-chart" style="height: 300px; position: relative;"></div>
+            </div>
+          </div>
+          <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+      
     </div>
     <!-- /.col -->
     <div class="col-md-9">
@@ -112,7 +127,7 @@
                                             $googleKey = Yii::app()->params['googleMaps'];
                                             $location = $profile->infousers->State.','.$profile->infousers->City;
                                             echo '<iframe
-                                                    width="450" height="450" frameborder="0" style="border:0"
+                                                    style="width:100%;" height="450" frameborder="0" style="border:0"
                                                     src="https://www.google.com/maps/embed/v1/place?key='.$googleKey.'&q='.$location.'"
                                                     allowfullscreen>
                                             </iframe>';
@@ -129,62 +144,71 @@
           <!-- /.tab-pane -->
 
           <div class="tab-pane" id="editProfile">
-            <?php
-                  if(isset($profile->attributes)) var_dump($profile->attributes);
-                  if(isset($profile->infousers)) var_dump($profile->infousers->attributes);
-                  if(isset($profile->userType)) var_dump($profile->userType->attributes);
-            ?>
-            <form class="form-horizontal">
-              <div class="form-group">
-                <label for="inputName" class="col-sm-2 control-label">Name</label>
+            <?php $form=$this->beginWidget('CActiveForm', array(
+                    'id'=>'user-form',
+                    // Please note: When you enable ajax validation, make sure the corresponding
+                    // controller action is handling ajax validation correctly.
+                    // There is a call to performAjaxValidation() commented in generated controller code.
+                    // See class documentation of CActiveForm for details on this.
+                    'enableAjaxValidation'=>false,
+            )); ?>
+              
+            <?php echo $form->errorSummary($userData); ?>
 
-                <div class="col-sm-10">
-                  <input type="email" class="form-control" id="inputName" placeholder="Name">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+            <div class="form-group">
+                    <?php echo $form->labelEx($userData,'user_name'); ?>
+                    <?php echo $form->textField($userData,'user_name',array('class'=>'form-control', 'size'=>60,'maxlength'=>150)); ?>
+                    <?php echo $form->error($userData,'user_name'); ?>
+            </div>
 
-                <div class="col-sm-10">
-                  <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputName" class="col-sm-2 control-label">Name</label>
+            <div class="form-group">
+                    <?php echo $form->labelEx($userData,'user_surname'); ?>
+                    <?php echo $form->textField($userData,'user_surname',array('class'=>'form-control', 'size'=>60,'maxlength'=>150)); ?>
+                    <?php echo $form->error($userData,'user_surname'); ?>
+            </div>
 
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="inputName" placeholder="Name">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputExperience" class="col-sm-2 control-label">Experience</label>
+            <div class="form-group">
+                    <?php echo $form->labelEx($userData,'user_email'); ?>
+                    <?php echo $form->textField($userData,'user_email',array('class'=>'form-control', 'size'=>60,'maxlength'=>200)); ?>
+                    <?php echo $form->error($userData,'user_email'); ?>
+            </div>
+              
+            <div class="form-group">
+                    <?php echo $form->labelEx($userData,'user_password'); ?>
+                    <?php echo $form->passwordField($userData,'user_password',array('class'=>'form-control', 'size'=>60,'maxlength'=>150)); ?>
+                    <?php echo $form->error($userData,'user_password'); ?>
+            </div>
+            
+            <div class="form-group">
+                    <?php echo $form->labelEx($infoUser,'nickname'); ?>
+                    <?php echo $form->textField($infoUser,'nickname',array('class'=>'form-control', 'size'=>60,'maxlength'=>150)); ?>
+                    <?php echo $form->error($infoUser,'nickname'); ?>
+            </div>
 
-                <div class="col-sm-10">
-                  <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputSkills" class="col-sm-2 control-label">Skills</label>
+            <div class="form-group">
+                    <?php echo $form->labelEx($infoUser,'birthdate'); ?>
+                    <?php echo $form->textField($infoUser,'birthdate',array('class'=>'form-control' )); ?>
+                    <?php echo $form->error($infoUser,'birthdate'); ?>
+            </div>
 
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                    </label>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                  <button type="submit" class="btn btn-danger">Submit</button>
-                </div>
-              </div>
-            </form>
+            <div class="form-group">
+                    <?php echo $form->labelEx($infoUser,'State'); ?>
+                    <?php echo $form->textField($infoUser,'State',array('class'=>'form-control', 'size'=>60,'maxlength'=>150)); ?>
+                    <?php echo $form->error($infoUser,'State'); ?>
+            </div>
+
+            <div class="form-group">
+                    <?php echo $form->labelEx($infoUser,'City'); ?>
+                    <?php echo $form->textField($infoUser,'City',array('class'=>'form-control', 'size'=>60,'maxlength'=>150)); ?>
+                    <?php echo $form->error($infoUser,'City'); ?>
+            </div>
+            
+            <div class="form-group">
+                    <?php echo CHtml::submitButton($infoUser->isNewRecord ? 'Create' : 'Save', array('class'=>'btn btn-primary btn-block btn-flat')); ?>
+            </div>
+            
+            <?php $this->endWidget(); ?>
+              
           </div>
           <!-- /.tab-pane -->
         </div>

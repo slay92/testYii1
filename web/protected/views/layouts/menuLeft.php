@@ -14,7 +14,7 @@
 
 <ul class="sidebar-menu">
     <li class="active"><a href="<?php echo Yii::app()->homeUrl; ?>/site/index"><i class="fa fa-home"></i> <span><?php echo BaseModel::label()['startPage']; ?></span></a></li>
-<!--    
+<!--   
     <li class="header"><?php echo BaseModel::label()['titleDevices']; ?></li>
 -->
     <li class="header"><?php echo BaseModel::label()['titleManage']; ?></li>

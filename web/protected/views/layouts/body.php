@@ -102,8 +102,45 @@ Apply one or more of the following classes to get the desired effect
 <script src="<?php echo Yii::app()->theme->baseUrl; ?>/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
 <script src="<?php echo Yii::app()->theme->baseUrl; ?>/bootstrap/js/bootstrap.min.js"></script>
-<!-- AdminLTE App -->
-<script src="<?php echo Yii::app()->theme->baseUrl; ?>/dist/js/app.min.js"></script>
+
+<?php
+    if(Yii::app()->getRequest()->getPathInfo() == 'user/profile'){
+        echo '<!-- Morris.js charts -->';
+        echo '<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>';
+        echo '<script src="'.Yii::app()->theme->baseUrl.'/plugins/morris/morris.min.js"></script>';
+        echo '<!-- FastClick -->';
+        echo '<script src="'.Yii::app()->theme->baseUrl.'/plugins/fastclick/fastclick.js"></script>';
+        echo '<!-- AdminLTE App -->';
+        echo '<script src="'.Yii::app()->theme->baseUrl.'/dist/js/app.min.js"></script>';
+        echo '<!-- AdminLTE for demo purposes -->';
+        echo '<script src="'.Yii::app()->theme->baseUrl.'/dist/js/demo.js"></script>';
+        echo <<<HTML
+            <!-- page script -->
+            <script>
+            $(function () {
+              "use strict";
+              //DONUT CHART
+              var donut = new Morris.Donut({
+                element: 'sales-chart',
+                resize: true,
+                colors: ["#3c8dbc", "#f56954"],
+                data: [
+                  {label: "Free Space", value: 99},
+                  {label: "Space", value: 1}
+                ],
+                hideHover: 'auto'
+              });
+            });
+          </script>
+HTML;
+    }
+    else {
+        echo '<!-- AdminLTE App -->';
+        echo '<script src="'.Yii::app()->theme->baseUrl.'/dist/js/app.min.js"></script>';
+    }
+?>
+
+
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. Slimscroll is required when using the

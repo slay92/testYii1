@@ -34,7 +34,7 @@ class Infouser extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_user, State, City, max_space, date_created', 'required'),
+			array('id_user, date_created', 'required'),
 			array('id_user, max_space', 'numerical', 'integerOnly'=>true),
 			array('nickname, State, City', 'length', 'max'=>150),
 			array('birthdate', 'safe'),
