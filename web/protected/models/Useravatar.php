@@ -1,29 +1,24 @@
 <?php
 
 /**
- * This is the model class for table "t_infouser".
+ * This is the model class for table "t_useravatar".
  *
- * The followings are the available columns in table 't_infouser':
+ * The followings are the available columns in table 't_useravatar':
  * @property integer $id
  * @property integer $id_user
- * @property string $nickname
- * @property string $birthdate
- * @property string $State
- * @property string $City
- * @property integer $max_space
- * @property string $date_created
+ * @property string $photoUrl
  *
  * The followings are the available model relations:
  * @property User $idUser
  */
-class Infouser extends CActiveRecord
+class Useravatar extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 't_infouser';
+		return 't_useravatar';
 	}
 
 	/**
@@ -35,12 +30,11 @@ class Infouser extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('id_user', 'required'),
-			array('id_user, max_space', 'numerical', 'integerOnly'=>true),
-			array('nickname, State, City', 'length', 'max'=>150),
-			array('birthdate', 'safe'),
+			array('id_user', 'numerical', 'integerOnly'=>true),
+			array('photoUrl', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, id_user, nickname, birthdate, State, City, max_space, date_created', 'safe', 'on'=>'search'),
+			array('id, id_user, photoUrl', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -64,12 +58,7 @@ class Infouser extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'id_user' => 'Id User',
-			'nickname' => Yii::t('app','model.profile.nickname'),
-			'birthdate' => Yii::t('app','model.profile.birthdate'),
-			'State' => Yii::t('app','model.profile.state'),
-			'City' => Yii::t('app','model.profile.city'),
-			'max_space' => 'Max Space',
-			'date_created' => 'Date Created',
+			'photoUrl' => 'Photo Url',
 		);
 	}
 
@@ -93,12 +82,7 @@ class Infouser extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('id_user',$this->id_user);
-		$criteria->compare('nickname',$this->nickname,true);
-		$criteria->compare('birthdate',$this->birthdate,true);
-		$criteria->compare('State',$this->State,true);
-		$criteria->compare('City',$this->City,true);
-		$criteria->compare('max_space',$this->max_space);
-		$criteria->compare('date_created',$this->date_created,true);
+		$criteria->compare('photoUrl',$this->photoUrl,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -109,10 +93,12 @@ class Infouser extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Infouser the static model class
+	 * @return Useravatar the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
 	}
+        
+        
 }

@@ -11,6 +11,17 @@ I'm Testing Yii Framework 1.
 - Add multilanguages labels in controllers
 - More testings in progress ...
 
+FUNCTIONS
+------------
+ - Login with email and password
+ - Manage you profile info and extra info
+ - Functions to get Avatars
+ - ADMIN - Manage Users
+    - Create
+    - Modify
+    - List
+    - Manage (Table List)
+    - View
 
 REQUIREMENTS
 ------------

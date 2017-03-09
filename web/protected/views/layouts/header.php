@@ -21,14 +21,17 @@
               <!-- Menu Toggle Button -->
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <!-- The user image in the navbar-->
-                <img src="<?php echo Yii::app()->theme->baseUrl; ?>/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                <!--BaseModel::getAvatarProfile()-->
+                <img src="<?php echo Yii::app()->request->baseUrl."/".BaseModel::getAvatarProfile(); ?>" class="user-image" alt="User Image">
                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                <span class="hidden-xs"><?php echo Yii::app()->user->name; ?></span>
+                <span class="hidden-xs">
+                    <?php echo BaseModel::showNameOrNickname();?>
+                </span>
               </a>
               <ul class="dropdown-menu">
                 <!-- The user image in the menu -->
                 <li class="user-header">
-                  <img src="<?php echo Yii::app()->theme->baseUrl; ?>/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                  <img src="<?php echo Yii::app()->request->baseUrl."/".BaseModel::getAvatarProfile(); ?>" class="img-circle" alt="User Image">
                   <p>
                       <?php echo Yii::app()->user->name; ?>
                   </p>

@@ -30,6 +30,7 @@ class BaseModel extends CFormModel{
                                 'AdminUsersList'=>Yii::t('app','model.menuL.AdminUsersList'),
                                 'AdminUsersAdd'=>Yii::t('app','model.menuL.AdminUsersAdd'),
                                 'AdminUsersManage'=>Yii::t('app','model.menuL.AdminUsersManage'),
+                                'AdminUsersUpdate'=>Yii::t('app','model.menuL.AdminUsersUpdate'),
 
                         'login'=>Yii::t('app','model.menuL.login'),
                         'logout'=>Yii::t('app','model.menuL.logout'),
@@ -39,5 +40,44 @@ class BaseModel extends CFormModel{
 
         public static function label(){
                return (new BaseModel)->attributeLabels();
+        }
+        
+        public static function showNameOrNickname(){
+            $id_user = Yii::app()->user->id;
+            $user = User::model()->findByPk($id_user);
+            $infoUser = Infouser::model()->find('id_user=:id_user', array(':id_user'=>$id_user));
+            $name = "";
+            if(isset($infoUser->nickname)){
+                $name = $infoUser->nickname;
+            }
+            else{
+                $name = $user->user_surname.", ".$user->user_name;
+            }
+            return $name;
+        }
+        
+        public static function getAvatarProfile(){
+            $id_user = Yii::app()->user->id;
+            $userAvatar = Useravatar::model()->find('id_user=:id_user', array(':id_user'=>$id_user));
+            $avatar = "";
+            if(!$userAvatar){
+                $avatar = "uploads\avatars\default.jpg";
+            }
+            else{
+                $avatar = $userAvatar->photoUrl;
+            }
+            return $avatar;
+        }
+        
+        public static function getAvatarUserID($id_user){
+            $userAvatar = Useravatar::model()->find('id_user=:id_user', array(':id_user'=>$id_user));
+            $avatar = "";
+            if(!$userAvatar){
+                $avatar = "uploads\avatars\default.jpg";
+            }
+            else{
+                $avatar = $userAvatar->photoUrl;
+            }
+            return $avatar;
         }
 }

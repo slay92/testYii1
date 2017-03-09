@@ -49,10 +49,11 @@ class UserController extends Controller
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
 	 */
-	public function actionView($id)
-	{
+	public function actionView($id){
+                $profile = User::model()->getProfileWithId($id);
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
+                        'profile'=>$profile,
 		));
 	}
 
@@ -63,19 +64,32 @@ class UserController extends Controller
 	public function actionCreate()
 	{
 		$model=new User;
-
+                $userTypes = CHtml::listData(Typeuser::model()->findAll(), 'id', 'name');
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['User']))
-		{
+                //Generate try catch and capture errors!!!!!---------------------------------
+		if(isset($_POST['User'])){
 			$model->attributes=$_POST['User'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			if($model->save()){
+                                // Add Info User
+                                $infoUser = new Infouser;
+                                $infoUser->id_user = $model->id;
+                                if($infoUser->save()){
+                                    // Add perms User
+                                    $permsUser = new Permsuser;
+                                    $permsUser->id_user = $model->id;
+                                    if($permsUser->save()){
+                                        // Redirect after create
+                                        $this->redirect(array('view','id'=>$model->id));
+                                    }
+                                }
+                        }
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
+                        'userTypes'=>$userTypes
 		));
 	}
 
@@ -84,10 +98,10 @@ class UserController extends Controller
 	 * If update is successful, the browser will be redirected to the 'view' page.
 	 * @param integer $id the ID of the model to be updated
 	 */
-	public function actionUpdate($id)
-	{
+	public function actionUpdate($id){
 		$model=$this->loadModel($id);
-
+                $userTypes = CHtml::listData(Typeuser::model()->findAll(), 'id', 'name');
+                
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
@@ -100,6 +114,7 @@ class UserController extends Controller
 
 		$this->render('update',array(
 			'model'=>$model,
+                        'userTypes'=>$userTypes
 		));
 	}
 
@@ -135,6 +150,24 @@ class UserController extends Controller
                 $id_user = Yii::app()->user->id;
                 $user = User::model()->findByPk($id_user);
                 $infoUser = Infouser::model()->find('id_user=:id_user', array(':id_user'=>$id_user));
+                
+                if(!empty($_POST)){
+                    // Set attribute for home address
+                    $infoUser->attributes=$_POST['Infouser'];
+                    // Set attribute for user data
+                    $user->attributes=$_POST['User'];
+
+                    // Validate all three model
+                    $valid=$infoUser->validate(); 
+                    $valid=$user->validate() && $valid;
+
+                    if($valid){       
+                        $infoUser->save();
+                        $user->save();
+                    }
+                    
+                    $profile = User::model()->getProfileObject();
+                }
                 
                 $dataProvider=new CActiveDataProvider('User');
                 $this->render('profile',array(

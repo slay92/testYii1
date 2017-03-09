@@ -1,24 +1,27 @@
-<?php
-
-?>
 <div class="row">
     <div class="col-md-3">
 
       <!-- Profile Image -->
       <div class="box box-primary">
         <div class="box-body box-profile">
-          <img class="profile-user-img img-responsive img-circle" src="<?php echo Yii::app()->theme->baseUrl; ?>/dist/img/user4-128x128.jpg" alt="User profile picture">
-
-          <h3 class="profile-username text-center"><?php echo $profile['user_surname'].', '.$profile['user_name']; ?></h3>
+          <img class="profile-user-img img-responsive img-circle" src="<?php echo Yii::app()->request->baseUrl."/".BaseModel::getAvatarProfile(); ?>" alt="User profile picture">
+          
           <?php
-            if(Yii::app()->user->isAdmin() == 1){
-                echo '<p class="text-muted text-center">Admin User</p>';
+            if(isset($profile->infousers->nickname)){
+                echo '<h3 class="profile-username text-center">'.$profile->infousers->nickname.'</h3>';
+                echo '<p class="text-muted text-center">'.$profile->user_surname.', '.$profile->user_name.'</p>';
             }
             else{
-                echo '<p class="text-muted text-center">Owner User</p>';
+                echo '<h3 class="profile-username text-center">'.$profile->user_surname.', '.$profile->user_name.'</h3>';
+            }
+            if(Yii::app()->user->isAdmin() == 1){
+                echo '<p class="text-muted text-center">'.User::label()['adminUser'].'</p>';
+            }
+            else{
+                echo '<p class="text-muted text-center">'.User::label()['ownerUser'].'</p>';
             }
           ?>
-          <a href="#" class="btn btn-primary btn-block"><i class="fa fa-picture-o" ></i> &nbsp;&nbsp;<b> Change Picture</b></a>
+          <a href="#" class="btn btn-primary btn-block"><i class="fa fa-picture-o" ></i> &nbsp;&nbsp;<b> <?php echo User::label()['changePicture']; ?></b></a>
         </div>
         <!-- /.box-body -->
       </div>
@@ -75,12 +78,24 @@
                     </li>
                     <!-- END timeline item -->
                     <?php
-                        if(isset($profile->infousers->birthdate) || isset($profile->infousers->City) || isset($profile->infousers->State)){
+                        if(isset($profile->infousers->nickname) || isset($profile->infousers->birthdate) || isset($profile->infousers->City) || isset($profile->infousers->State)){
                             echo '<!-- timeline time label -->';
                             echo '<li class="time-label">';
                                 echo '<span class="bg-red">'.User::label()['titleExtraInfo'].'</span>';
                             echo '</li>';
                             echo '<!-- /.timeline-label -->';
+                        }
+                        if(isset($profile->infousers->nickname)){
+                            echo '<!-- timeline item -->';
+                            echo '<li>';
+                              echo '<i class="fa fa-user bg-green"></i>';
+                              echo '<div class="timeline-item">';
+                                  echo '<h3 class="timeline-header"><a href="#">'.User::label()['nickname'].':</a> ';
+                                     echo $profile->infousers->nickname;
+                                  echo '</h3>';
+                              echo '</div>';
+                            echo '</li>';
+                            echo '<!-- END timeline item -->';
                         }
                         if(isset($profile->infousers->birthdate)){
                             echo '<!-- timeline item -->';

@@ -104,7 +104,9 @@ Apply one or more of the following classes to get the desired effect
 <script src="<?php echo Yii::app()->theme->baseUrl; ?>/bootstrap/js/bootstrap.min.js"></script>
 
 <?php
-    if(Yii::app()->getRequest()->getPathInfo() == 'user/profile'){
+    $url = Yii::app()->getRequest()->getPathInfo();
+    $url = explode('/', $url);
+    if($url[0] == 'user'){
         echo '<!-- Morris.js charts -->';
         echo '<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>';
         echo '<script src="'.Yii::app()->theme->baseUrl.'/plugins/morris/morris.min.js"></script>';

@@ -27,7 +27,6 @@
                         echo '</span>';
                     echo '</a>';
                     echo '<ul class="treeview-menu">';
-                    
                         echo '<li>';
                             echo '<a href="#"><i class="fa fa-child"></i> '.BaseModel::label()['AdminUsers'];
                                 echo '<span class="pull-right-container">';
@@ -36,8 +35,8 @@
                             echo '</a>';
                             echo '<ul class="treeview-menu">';
                                 echo '<li><a href="'.Yii::app()->homeUrl.'/user/"><i class="fa fa-users "></i> '.BaseModel::label()['AdminUsersList'].'</a></li>';
-                                echo '<li><a href="'.Yii::app()->homeUrl.'/user/admin"><i class="fa fa-user-plus"></i> '.BaseModel::label()['AdminUsersAdd'].'</a></li>';
-                                echo '<li><a href="'.Yii::app()->homeUrl.'/user/create"><i class="fa fa-wrench"></i> '.BaseModel::label()['AdminUsersManage'].'</a></li>';
+                                echo '<li><a href="'.Yii::app()->homeUrl.'/user/create"><i class="fa fa-user-plus"></i> '.BaseModel::label()['AdminUsersAdd'].'</a></li>';
+                                echo '<li><a href="'.Yii::app()->homeUrl.'/user/admin"><i class="fa fa-wrench"></i> '.BaseModel::label()['AdminUsersManage'].'</a></li>';
                             echo '</ul>';
                         echo '</li>';
                     
