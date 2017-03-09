@@ -61,7 +61,7 @@ class BaseModel extends CFormModel{
             $userAvatar = Useravatar::model()->find('id_user=:id_user', array(':id_user'=>$id_user));
             $avatar = "";
             if(!$userAvatar){
-                $avatar = "uploads\avatars\default.jpg";
+                $avatar = "uploads/avatars/default.jpg";
             }
             else{
                 $avatar = $userAvatar->photoUrl;
@@ -73,11 +73,11 @@ class BaseModel extends CFormModel{
             $userAvatar = Useravatar::model()->find('id_user=:id_user', array(':id_user'=>$id_user));
             $avatar = "";
             if(!$userAvatar){
-                $avatar = "uploads\avatars\default.jpg";
+                $avatar = "uploads/avatars/default.jpg";
             }
             else{
                 $avatar = $userAvatar->photoUrl;
             }
             return $avatar;
-        }
+        }        
 }

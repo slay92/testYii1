@@ -1,10 +1,13 @@
+<?php
+    $avatarIMG = BaseModel::getAvatarProfile();
+?>
 <div class="row">
     <div class="col-md-3">
 
       <!-- Profile Image -->
       <div class="box box-primary">
         <div class="box-body box-profile">
-          <img class="profile-user-img img-responsive img-circle" src="<?php echo Yii::app()->request->baseUrl."/".BaseModel::getAvatarProfile(); ?>" alt="User profile picture">
+          <img class="profile-user-img img-responsive img-circle" src="<?php echo Yii::app()->request->baseUrl."/".$avatarIMG; ?>" alt="User profile picture">
           
           <?php
             if(isset($profile->infousers->nickname)){
@@ -20,8 +23,15 @@
             else{
                 echo '<p class="text-muted text-center">'.User::label()['ownerUser'].'</p>';
             }
+            
+            if($avatarIMG == "uploads/avatars/default.jpg"){
+                echo '<a href="'.Yii::app()->homeUrl.'/useravatar/create" class="btn btn-primary btn-block"><i class="fa fa-picture-o" ></i> &nbsp;&nbsp;<b> '.User::label()['changePicture'].'</b></a>';
+            }
+            else{
+                echo '<a href="'.Yii::app()->homeUrl.'/useravatar/update" class="btn btn-primary btn-block"><i class="fa fa-picture-o" ></i> &nbsp;&nbsp;<b> '.User::label()['changePicture'].'</b></a>';
+            }
+            
           ?>
-          <a href="#" class="btn btn-primary btn-block"><i class="fa fa-picture-o" ></i> &nbsp;&nbsp;<b> <?php echo User::label()['changePicture']; ?></b></a>
         </div>
         <!-- /.box-body -->
       </div>

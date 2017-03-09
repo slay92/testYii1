@@ -29,6 +29,9 @@ class Useravatar extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+                        // this will allow empty field when page is update (remember here i create scenario update)
+                        array('image', 'file','types'=>'jpg, gif, png', 'allowEmpty'=>true, 'on'=>'update'),
+//                        array('image', 'length', 'max'=>255, 'on'=>'insert,update'),
 			array('id_user', 'required'),
 			array('id_user', 'numerical', 'integerOnly'=>true),
 			array('photoUrl', 'safe'),
