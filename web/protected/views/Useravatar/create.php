@@ -17,8 +17,8 @@
 
                 echo '<div class="form-group">';
                     echo $form->labelEx($model, User::label()['changePicture']);
-                    echo CHtml::activeFileField($model, 'image', array('class'=>'form-control'));
-                    echo $form->error($model,'image');
+                    echo CHtml::activeFileField($model, 'photoUrl', array('class'=>'form-control'));
+                    echo $form->error($model,'photoUrl');
                 echo '</div>';
 
                 echo CHtml::submitButton('Submit', array('class'=>'btn btn-primary btn-block btn-flat'));

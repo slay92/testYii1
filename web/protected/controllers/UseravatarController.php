@@ -2,30 +2,23 @@
 
 class UseravatarController extends CController{
 
-    /**
-     * Millorar codic, per que es genera 2 models de UserAvatar.
-     * 1 Per per pujar l'arxiu i l'altre per fer l'insert a la BD
-     * Si es feia tot en un sol, com a la base de dades no hi ha el camp image donaba error
-     */
     public function actionCreate(){
         $model=new Useravatar;
         if(isset($_POST['Useravatar'])){
             $rnd = rand(0,9999);
             $model->attributes = $_FILES['Useravatar'];
-            $uploadedFile=CUploadedFile::getInstance($model,'image');
+            $uploadedFile=CUploadedFile::getInstance($model,'photoUrl');
             $id_user = Yii::app()->user->id;
             
-            $path = $_FILES['Useravatar']['name']['image'];
+            $path = $_FILES['Useravatar']['name']['photoUrl'];
             $ext = pathinfo($path, PATHINFO_EXTENSION);
             $fileName = "{$rnd}-{$id_user}.{$ext}";
             
             if($uploadedFile->saveAs(Yii::app()->basePath.'/../uploads/avatars/'.$fileName)){
-                $avatarDB = new Useravatar;
-                $avatarDB->photoUrl = 'uploads/avatars/'.$fileName;
-                $avatarDB->id_user = $id_user;
-                if($avatarDB->save()){
+                $model->photoUrl = 'uploads/avatars/'.$fileName;
+                $model->id_user = $id_user;
+                if($model->save()){
                     $this->redirect(array('update'));
-//                    $this->actionUpdate();
                 }
             }
         }
@@ -35,32 +28,49 @@ class UseravatarController extends CController{
     }
     
     public function actionUpdate(){
-//        $model=$this->loadModel($id);
+        $id_user = Yii::app()->user->id;
+        $model = $this->loadModel($id_user);
+        $oldFile = $model->photoUrl;
+        
+        if(isset($_POST['Useravatar'])){
+            $model->attributes = $_FILES['Useravatar'];
+            $uploadedFile = CUploadedFile::getInstance($model,'photoUrl');
+            if(!empty($uploadedFile)){
+                $rnd = rand(0,9999);
+                $path = $_FILES['Useravatar']['name']['photoUrl'];
+                $ext = pathinfo($path, PATHINFO_EXTENSION);
+                $fileName = "{$rnd}-{$id_user}.{$ext}";
+
+                if($uploadedFile->saveAs(Yii::app()->basePath.'/../uploads/avatars/'.$fileName)){
+                    unlink(Yii::app()->basePath.'/../'.$oldFile);
+                    $model->photoUrl = 'uploads/avatars/'.$fileName;
+                    if($model->save()){
+                        $this->render('update',array(
+                            'model'=>$model,
+                        ));
+                    }
+                }
+            }
+        }
  
-//        if(isset($_POST['Banner'])){
-//            $_POST['Banner']['image'] = $model->image;
-//            $model->attributes=$_POST['Banner'];
-// 
-//            $uploadedFile=CUploadedFile::getInstance($model,'image');
-// 
-//            if($model->save())
-//            {
-//                if(!empty($uploadedFile))  // check if uploaded file is set or not
-//                {
-//                    $uploadedFile->saveAs(Yii::app()->basePath.'/../banner/'.$model->image);
-//                }
-//                $this->render('update',array(
-//                    'model'=>$model,
-//                ));
-//            }
-// 
-//        }
- 
-//        $this->render('update',array(
-//            'model'=>$model,
-//        ));
-        $this->render('update');
+        $this->render('update',array(
+            'model'=>$model,
+        ));
     }
     
+    
+    /**
+    * Returns the data model based on the primary key given in the GET variable.
+    * If the data model is not found, an HTTP exception will be raised.
+    * @param integer $id the ID of the model to be loaded
+    * @return User the loaded model
+    * @throws CHttpException
+    */
+    public function loadModel($id_user){
+            $model = Useravatar::model()->find('id_user=:id_user', array(':id_user'=>$id_user));
+            if($model===null)
+                throw new CHttpException(404,'The requested page does not exist.');
+            return $model;
+    }
     
 }
