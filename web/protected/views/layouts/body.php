@@ -22,6 +22,9 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+  <!-- SWAL2 -->
+  <link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/plugins/swal2/sweetalert2.min.css">
+  <script src="<?php echo Yii::app()->theme->baseUrl; ?>/plugins/swal2/sweetalert2.min.js"></script>
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -141,11 +144,9 @@ HTML;
         echo '<script src="'.Yii::app()->theme->baseUrl.'/dist/js/app.min.js"></script>';
     }
 ?>
-
-
-<!-- Optionally, you can add Slimscroll and FastClick plugins.
-     Both of these plugins are recommended to enhance the
-     user experience. Slimscroll is required when using the
-     fixed layout. -->
+<!-- SlimScroll -->
+<script src="<?php echo Yii::app()->theme->baseUrl; ?>/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="<?php echo Yii::app()->theme->baseUrl; ?>/plugins/fastclick/fastclick.js"></script>
 </body>
 </html>

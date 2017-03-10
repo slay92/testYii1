@@ -167,15 +167,21 @@ class UserController extends Controller
                     }
                     
                     $profile = User::model()->getProfileObject();
+                    $this->render('/user/profile',array(
+                            'profile'=>$profile,
+                            'userData'=>$user,
+                            'infoUser'=>$infoUser
+                    ));
                 }
-                
-                $dataProvider=new CActiveDataProvider('User');
-                $this->render('profile',array(
-                        'dataProvider'=>$dataProvider,
-                        'profile'=>$profile,
-                        'userData'=>$user,
-                        'infoUser'=>$infoUser
-                ));
+                else{
+                    $dataProvider=new CActiveDataProvider('User');
+                    $this->render('profile',array(
+                            'dataProvider'=>$dataProvider,
+                            'profile'=>$profile,
+                            'userData'=>$user,
+                            'infoUser'=>$infoUser
+                    ));
+                }
             }
             else{
                 $this->actionLogin();

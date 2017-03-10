@@ -5,7 +5,7 @@ return array (
         'model.login.title' => 'Benvingut, inicia sessió per accedir.',
         'model.login.email' => 'Correu electronic',
         'model.login.password' => 'Contrasenya',
-        'model.login.remember' => 'Recorda\'m',
+        'model.login.remember' => 'Recorda&#39;m',
         'model.login.login' => 'Iniciar Sessió',
     //Header
         'model.header.headerProfile' => 'El meu Perfil',
@@ -43,22 +43,33 @@ return array (
         'model.profile.title' => 'El meu perfil',
         'model.profile.adminUser' => 'Usuari Administrador',
         'model.profile.ownerUser' => 'Usuari Client',
-        'model.profile.changePicture' => 'Canviar l\'imatge',
+        'model.profile.changePicture' => 'Canviar l&#39;imatge',
         'model.profile.titleSpace' => 'Espai Utilitzat',
         'model.profile.titleUpdate' => 'Edició del perfil',
         'model.profile.password' => 'Contrasenya',
         'model.profile.titleInfoBasic' => 'Informació Basica',
-        'model.profile.user_type' => 'Tipus d\'usuari',
+        'model.profile.user_type' => 'Tipus d&#39;usuari',
         'model.profile.name' => 'Nom',
         'model.profile.surname' => 'Cognoms',
         'model.profile.email' => 'Correu electronic',
         'model.profile.titleExtraInfo' => 'Informació Detallada',
-        'model.profile.nickname' => 'Nom d\'usuari',
+        'model.profile.nickname' => 'Nom d&#39;usuari',
         'model.profile.birthdate' => 'Data de neixament',
         'model.profile.location' => 'Ubicació',
         'model.profile.state' => 'Pais',
         'model.profile.city' => 'Ciutat',
-        'model.profile.map' => 'Mapa de l\'ubicació',
-        'model.user.viewUser' => 'Veure l\'usuari',
+        'model.profile.map' => 'Mapa de l&#39;ubicació',
+        'model.user.viewUser' => 'Veure l&#39;usuari',
+        'model.avatar.titleSection' => 'Imatge de Perfil',
+        'model.avatar.titleLabel' => 'Selecciona l&#39;imatge que vols pujar',
 
+    
+    
+    //SWAL Titles and Messages
+        //Avatar
+        'swal.Avatar.title' => 'IMATGE DEL PERFIL',
+        'swal.Avatar.success' => 'S&#39;ha actualitzat correctament l&#39;imatge.',
+        'swal.Avatar.error' => 'Error al canviar l&#39;imatge de l&#39;usuari.',
+    
+    
 );

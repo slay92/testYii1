@@ -56,14 +56,24 @@ class Useravatar extends CActiveRecord
 	/**
 	 * @return array customized attribute labels (name=>label)
 	 */
-	public function attributeLabels()
-	{
+	public function attributeLabels(){
 		return array(
 			'id' => 'ID',
 			'id_user' => 'Id User',
 			'photoUrl' => 'Photo Url',
+                        
+                        'titleSection' => Yii::t('app','model.avatar.titleSection'),
+                        'titleLabel' => Yii::t('app','model.avatar.titleLabel'),
+                    
+                        'SwalAvatarTitle' => Yii::t('app','swal.Avatar.title'),
+                        'SwalAvatarSuccess' => Yii::t('app','swal.Avatar.success'),
+                        'SwalAvatarError' => Yii::t('app','swal.Avatar.error'),
 		);
 	}
+        
+        public static function label(){
+               return (new Useravatar)->attributeLabels();
+        }
 
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.

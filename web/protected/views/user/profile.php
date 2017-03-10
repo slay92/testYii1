@@ -244,3 +244,9 @@
     <!-- /.col -->
   </div>
   <!-- /.row -->
+  
+<?php
+    if(isset($_GET['avatarStatus'])){
+        echo BaseModel::swalModal($_GET['avatarStatus']);
+    }
+?>

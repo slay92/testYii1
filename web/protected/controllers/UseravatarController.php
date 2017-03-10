@@ -5,6 +5,12 @@ class UseravatarController extends CController{
     public function actionCreate(){
         $model=new Useravatar;
         if(isset($_POST['Useravatar'])){
+            $avatarStatus = array(
+                "OKnKO"=>"error",
+                "title"=>Useravatar::label()['SwalAvatarTitle'],
+                "msg"=>Useravatar::label()['SwalAvatarError'],
+            );
+            
             $rnd = rand(0,9999);
             $model->attributes = $_FILES['Useravatar'];
             $uploadedFile=CUploadedFile::getInstance($model,'photoUrl');
@@ -18,9 +24,14 @@ class UseravatarController extends CController{
                 $model->photoUrl = 'uploads/avatars/'.$fileName;
                 $model->id_user = $id_user;
                 if($model->save()){
-                    $this->redirect(array('update'));
+                    $avatarStatus = array(
+                        "OKnKO"=>"success",
+                        "title"=>Useravatar::label()['SwalAvatarTitle'],
+                        "msg"=>Useravatar::label()['SwalAvatarSuccess'],
+                    );
                 }
             }
+            $this->redirect(array('user/profile', 'avatarStatus'=>$avatarStatus));
         }
         $this->render('create',array(
             'model'=>$model,
@@ -31,6 +42,11 @@ class UseravatarController extends CController{
         $id_user = Yii::app()->user->id;
         $model = $this->loadModel($id_user);
         $oldFile = $model->photoUrl;
+        $avatarStatus = array(
+            "OKnKO"=>"error",
+            "title"=>Useravatar::label()['SwalAvatarTitle'],
+            "msg"=>Useravatar::label()['SwalAvatarError'],
+        );
         
         if(isset($_POST['Useravatar'])){
             $model->attributes = $_FILES['Useravatar'];
@@ -45,12 +61,15 @@ class UseravatarController extends CController{
                     unlink(Yii::app()->basePath.'/../'.$oldFile);
                     $model->photoUrl = 'uploads/avatars/'.$fileName;
                     if($model->save()){
-                        $this->render('update',array(
-                            'model'=>$model,
-                        ));
+                        $avatarStatus = array(
+                            "OKnKO"=>"success",
+                            "title"=>Useravatar::label()['SwalAvatarTitle'],
+                            "msg"=>Useravatar::label()['SwalAvatarSuccess'],
+                        );
                     }
                 }
             }
+            $this->redirect(array('user/profile', 'avatarStatus'=>$avatarStatus));
         }
  
         $this->render('update',array(

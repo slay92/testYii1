@@ -79,5 +79,26 @@ class BaseModel extends CFormModel{
                 $avatar = $userAvatar->photoUrl;
             }
             return $avatar;
-        }        
+        }
+        
+        /**
+         * Function to show a SWAL Modal
+         * @param array $avatarStatus
+         *      $avatarStatus = array(
+         *          "OKnKO"=>"",
+         *          "title"=>"",
+         *          "msg"=>"",
+         *      )
+         * @return string HTML
+         */
+        public static function swalModal($avatarStatus){
+            $html = "<script>";
+            $html .= 'swal('
+                    . "'".$avatarStatus['title']."',"
+                    . "'".$avatarStatus['msg']."',"
+                    . "'".$avatarStatus['OKnKO']."'"
+                . ')';
+            $html .= "</script>";
+            return $html;
+        }
 }

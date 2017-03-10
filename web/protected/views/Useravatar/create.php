@@ -1,3 +1,6 @@
+<?php
+    echo "<h3>".Useravatar::label()['titleSection']."</h3>";
+?>
 <div class="row">
     <div class="col-md-offset-3 col-md-6">
         <!-- Profile Image -->
@@ -16,7 +19,7 @@
                 );
 
                 echo '<div class="form-group">';
-                    echo $form->labelEx($model, User::label()['changePicture']);
+                    echo $form->labelEx($model, Useravatar::label()['titleLabel']);
                     echo CHtml::activeFileField($model, 'photoUrl', array('class'=>'form-control'));
                     echo $form->error($model,'photoUrl');
                 echo '</div>';
@@ -28,9 +31,8 @@
     </div>
 </div>
 
-
-
-
-
-
-
+<?php
+    if(isset($avatarStatus)){
+        echo BaseModel::swalModal($avatarStatus);
+    }
+?>
