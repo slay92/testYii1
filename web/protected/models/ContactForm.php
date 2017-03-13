@@ -33,10 +33,21 @@ class ContactForm extends CFormModel
 	 * If not declared here, an attribute would have a label that is
 	 * the same as its name with the first letter in upper case.
 	 */
-	public function attributeLabels()
-	{
+	public function attributeLabels(){
 		return array(
-			'verifyCode'=>'Verification Code',
+			'title'=>Yii::t('app','model.contact.title'),
+			'newMsg'=>Yii::t('app','model.contact.newMsg'),
+			'name'=>Yii::t('app','model.contact.name'),
+			'email'=>Yii::t('app','model.contact.email'),
+			'subject'=>Yii::t('app','model.contact.subject'),
+			'body'=>Yii::t('app','model.contact.body'),
+			'verificationcode'=>Yii::t('app','model.contact.verificationcode'),
+			'verificationText'=>Yii::t('app','model.contact.verificationText'),
+			'send'=>Yii::t('app','model.contact.send'),
 		);
 	}
+        
+        public static function label(){
+               return (new ContactForm)->attributeLabels();
+        }
 }

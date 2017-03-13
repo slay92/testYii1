@@ -25,6 +25,8 @@
   <!-- SWAL2 -->
   <link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/plugins/swal2/sweetalert2.min.css">
   <script src="<?php echo Yii::app()->theme->baseUrl; ?>/plugins/swal2/sweetalert2.min.js"></script>
+  <!-- bootstrap wysihtml5 - text editor -->
+  <link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -139,6 +141,18 @@ Apply one or more of the following classes to get the desired effect
           </script>
 HTML;
     }
+    else if($url[1] = 'contact'){
+        echo '<!-- Bootstrap WYSIHTML5 -->';
+        echo '<script src="'.Yii::app()->theme->baseUrl.'/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>';
+        echo '<!-- AdminLTE App -->';
+        echo '<script src="'.Yii::app()->theme->baseUrl.'/dist/js/app.min.js"></script>';
+        echo '<script>
+                $(function () {
+                  //Add text editor
+                  $("#compose-textarea").wysihtml5();
+                });
+              </script>';
+    }
     else {
         echo '<!-- AdminLTE App -->';
         echo '<script src="'.Yii::app()->theme->baseUrl.'/dist/js/app.min.js"></script>';
@@ -148,5 +162,6 @@ HTML;
 <script src="<?php echo Yii::app()->theme->baseUrl; ?>/plugins/slimScroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
 <script src="<?php echo Yii::app()->theme->baseUrl; ?>/plugins/fastclick/fastclick.js"></script>
+
 </body>
 </html>

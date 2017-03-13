@@ -246,7 +246,12 @@
   <!-- /.row -->
   
 <?php
-    if(isset($_GET['avatarStatus'])){
-        echo BaseModel::swalModal($_GET['avatarStatus']);
+    $avatarModal = Yii::app()->user->getState('avatarStatus');
+    if(isset($avatarModal)){
+        echo BaseModel::swalModal($avatarModal);
+        Yii::app()->user->setState('avatarStatus', NULL);
+    }
+    if(isset($swalInfoUser)){
+        echo BaseModel::swalModal($swalInfoUser);
     }
 ?>

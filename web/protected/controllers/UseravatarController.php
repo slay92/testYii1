@@ -31,7 +31,9 @@ class UseravatarController extends CController{
                     );
                 }
             }
-            $this->redirect(array('user/profile', 'avatarStatus'=>$avatarStatus));
+            Yii::app()->user->setState('avatarStatus', $avatarStatus);
+            $this->redirect(array('user/profile'));
+//            $this->redirect(array('user/profile', 'avatarStatus'=>$avatarStatus));
         }
         $this->render('create',array(
             'model'=>$model,
@@ -69,7 +71,8 @@ class UseravatarController extends CController{
                     }
                 }
             }
-            $this->redirect(array('user/profile', 'avatarStatus'=>$avatarStatus));
+            Yii::app()->user->setState('avatarStatus', $avatarStatus);
+            $this->redirect(array('user/profile'));
         }
  
         $this->render('update',array(

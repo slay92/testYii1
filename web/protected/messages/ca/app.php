@@ -13,6 +13,8 @@ return array (
     //Footer
         'model.header.rights' => 'Tots els drets reservats.',
         'model.header.based' => 'Basat en ',
+    //Basic Forms
+        'model.forms.required'=>'Els camps marcats amb <span class="required">*</span> son obligatoris.',
     //Menu Left
         'model.menuL.startPage' => 'INICI',
         'model.menuL.titleDevices' => 'DISPOSITIUS',
@@ -39,6 +41,16 @@ return array (
         'model.menuL.contact' => 'CONTACTE',
         'model.menuL.login' => 'INICIAR SESSIÓ', //No tindria que apareixer mai en principi
         'model.menuL.logout' => 'TANCAR SESSIÓ',
+    //Contact
+        'model.contact.title' => 'Contacte amb nosaltres',
+        'model.contact.newMsg' => 'Nou missatge',
+        'model.contact.name' => 'El teu Nom',
+        'model.contact.email' => 'Correu electronic',
+        'model.contact.subject' => 'Subjecte del correu electronic',
+        'model.contact.body' => 'Missatge',
+        'model.contact.verificationcode' => 'Codi de verificació',
+        'model.contact.send' => 'Enviar',
+        'model.contact.verificationText' => 'Siusplau introdueix les lletres que es mostren a l&#39;imatge',
     //Profile - User Forms 
         'model.profile.title' => 'El meu perfil',
         'model.profile.adminUser' => 'Usuari Administrador',
@@ -70,6 +82,10 @@ return array (
         'swal.Avatar.title' => 'IMATGE DEL PERFIL',
         'swal.Avatar.success' => 'S&#39;ha actualitzat correctament l&#39;imatge.',
         'swal.Avatar.error' => 'Error al canviar l&#39;imatge de l&#39;usuari.',
+        //Profile Info
+        'swal.Profile.title' => 'INFORMACIÓ DEL PERFIL',
+        'swal.Profile.success' => 'S&#39;ha actualitzat correctament l&#39;informació.',
+        'swal.Profile.error' => 'Error al canviar l&#39;informació de l&#39;usuari.',
     
     
 );

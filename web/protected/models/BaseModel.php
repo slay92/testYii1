@@ -34,6 +34,9 @@ class BaseModel extends CFormModel{
 
                         'login'=>Yii::t('app','model.menuL.login'),
                         'logout'=>Yii::t('app','model.menuL.logout'),
+                   
+                        //Forms
+                        'required'=>Yii::t('app','model.forms.required'),
                        
                );
         }

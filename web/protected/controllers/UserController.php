@@ -146,12 +146,16 @@ class UserController extends Controller
         public function actionProfile(){
             if(!Yii::app()->user->isGuest){
                 $profile = User::model()->getProfileObject();
-                
                 $id_user = Yii::app()->user->id;
                 $user = User::model()->findByPk($id_user);
                 $infoUser = Infouser::model()->find('id_user=:id_user', array(':id_user'=>$id_user));
                 
                 if(!empty($_POST)){
+                    $arraySwalProfile = array(
+                        "OKnKO"=>"error",
+                        "title"=>User::label()['SwalAvatarTitle'],
+                        "msg"=>User::label()['SwalAvatarError'],
+                    );
                     // Set attribute for home address
                     $infoUser->attributes=$_POST['Infouser'];
                     // Set attribute for user data
@@ -163,14 +167,21 @@ class UserController extends Controller
 
                     if($valid){       
                         $infoUser->save();
-                        $user->save();
+                        if($user->save()){
+                            $arraySwalProfile = array(
+                                "OKnKO"=>"success",
+                                "title"=>User::label()['SwalAvatarTitle'],
+                                "msg"=>User::label()['SwalAvatarSuccess'],
+                            );
+                        }
                     }
                     
                     $profile = User::model()->getProfileObject();
                     $this->render('/user/profile',array(
                             'profile'=>$profile,
                             'userData'=>$user,
-                            'infoUser'=>$infoUser
+                            'infoUser'=>$infoUser,
+                            'swalInfoUser'=>$arraySwalProfile,
                     ));
                 }
                 else{

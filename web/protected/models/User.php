@@ -102,6 +102,10 @@ class User extends CActiveRecord
                         'city' => Yii::t('app','model.profile.city'),
                         'map' => Yii::t('app','model.profile.map'),
                         'viewUser' => Yii::t('app','model.user.viewUser'),
+                    
+                        'SwalAvatarTitle' => Yii::t('app','swal.Profile.title'),
+                        'SwalAvatarSuccess' => Yii::t('app','swal.Profile.success'),
+                        'SwalAvatarError' => Yii::t('app','swal.Profile.error'),
 		);
 	}
         
